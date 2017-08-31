@@ -22,11 +22,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next) => {
-    res.render('maintenance.hbs');
-});
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs');
+// });
 
 app.use(express.static(__dirname + '/public'));
+
 hbs.registerHelper('getCurrentYear', () => new Date().getFullYear());
 
 hbs.registerHelper('screamIt', (text) => text.toUpperCase() );
@@ -57,6 +58,13 @@ app.get('/about', (req, res) => {
 app.get('/bad', (req, res) => {
     res.send({
         errorMessage: 'There is some error'
+    });
+});
+
+app.get('/project', (req, res) => {
+    res.render('project.hbs', {
+       pageTitle: 'Project Page',
+       welcomeMessage: 'Welcome to my projects portfolio page'
     });
 });
 
